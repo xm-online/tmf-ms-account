@@ -1,6 +1,5 @@
 package com.icthh.xm.tmf.ms.account;
 
-import com.icthh.xm.tmf.ms.account.client.OAuth2InterceptedFeignConfiguration;
 import com.icthh.xm.tmf.ms.account.config.ApplicationProperties;
 import com.icthh.xm.tmf.ms.account.config.DefaultProfileUtil;
 
@@ -13,8 +12,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
@@ -23,7 +20,7 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
-@SpringBootApplication(scanBasePackages = { "com.icthh.xm", "com.icthh.xm.tmf.ms.account" })
+@SpringBootApplication(scanBasePackages = { "com.icthh.xm"})
 @EnableConfigurationProperties({ApplicationProperties.class})
 @EnableDiscoveryClient
 public class AccountApp {
