@@ -1,0 +1,36 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.icthh.xm.tmf.ms.account"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "microservice",
+    "baseName": "account",
+    "packageName": "com.icthh.xm.tmf.ms.account",
+    "packageFolder": "com/icthh/xm/tmf/ms/account",
+    "serverPort": "8702",
+    "authenticationType": "uaa",
+    "uaaBaseName": "uaa",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "no",
+    "devDatabaseType": "no",
+    "prodDatabaseType": "no",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "consul",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZGYzMDA5ZjMyMTdhNDY1OTE1NjQ2ZjVlNGQ4M2ZmMDkzZjE4Njg0M2ZlYTVmMjkzMjAyOTRjNjc3NTZmMThmZWU0Yjg5OGM1MTI5Yzg3MjQ4YjM5ZDNkMmJlMjMxYzAzZDFjZWZiMDMwNzdhOWM5ZjA1MDhkYTQ5NmE2Zjc2Mjg=",
+    "enableTranslation": false,
+    "testFrameworks": [
+      "gatling",
+      "cucumber"
+    ],
+    "jhiPrefix": "jhi",
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
