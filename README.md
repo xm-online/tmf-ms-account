@@ -15,7 +15,6 @@ To start your application in the dev profile, simply run:
 For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
 
 
-
 ## Building for production
 
 To optimize the account application for production, run:
