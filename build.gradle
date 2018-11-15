@@ -177,6 +177,8 @@ repositories {
 dependencies {
     // Use ", version: jhipster_dependencies_version, changing: true" if you want
     // to use a SNAPSHOT release instead of a stable release
+    provided "org.projectlombok:lombok:${lombok_version}"
+    apt "org.projectlombok:lombok:${lombok_version}"
     compile group: "io.github.jhipster", name: "jhipster-framework"
     compile "io.dropwizard.metrics:metrics-core"
     compile "io.dropwizard.metrics:metrics-json"
@@ -224,10 +226,14 @@ dependencies {
     }
     compile "io.springfox:springfox-bean-validators"
     compile "org.mapstruct:mapstruct-jdk8:${mapstruct_version}"
+
     compile "com.icthh.xm.commons:xm-commons-security:${xm_commons_version}"
     compile "com.icthh.xm.commons:xm-commons-logging-web:${xm_commons_version}"
-    provided "org.projectlombok:lombok:${lombok_version}"
-    apt "org.projectlombok:lombok:${lombok_version}"
+    compile "com.icthh.xm.commons:xm-commons-lep:${xm_commons_version}"
+    compile("com.icthh.xm.commons:xm-commons-ms-web:${xm_commons_version}") {
+        exclude group: 'io.github.jhipster', module: 'jhipster'
+    }
+
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
     annotationProcessor ("org.springframework.boot:spring-boot-configuration-processor") {
         exclude group: 'com.vaadin.external.google', module: 'android-json'
