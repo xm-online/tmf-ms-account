@@ -235,6 +235,7 @@ dependencies {
     compile("com.icthh.xm.commons:xm-commons-ms-web:${xm_commons_version}") {
         exclude group: 'io.github.jhipster', module: 'jhipster'
     }
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
     annotationProcessor ("org.springframework.boot:spring-boot-configuration-processor") {
         exclude group: 'com.vaadin.external.google', module: 'android-json'
