@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -20,6 +22,17 @@ public class PartyAccountDelegate implements PartyAccountApiDelegate {
     @PreAuthorize("hasPermission({'id': #id}, 'PARTY.ACCOUNT.GET')")
     @Override
     public ResponseEntity<List<PartyAccount>> retrievePartyAccount(String id) {
-        return null;
+        CustomPartyAccount partyAccount = new CustomPartyAccount();
+
+        partyAccount.setBaseType(PartyAccount.class.getSimpleName());
+        partyAccount.setType(CustomPartyAccount.class.getSimpleName());
+        partyAccount.setSchemaLocation("http://account/schema/CustomPartyAccount.yml");
+        partyAccount.setCustomField("Custom value");
+
+
+        partyAccount.setId("1232");
+        partyAccount.setLastModified(OffsetDateTime.now());
+
+        return ResponseEntity.ok(Collections.singletonList(partyAccount));
     }
 }
