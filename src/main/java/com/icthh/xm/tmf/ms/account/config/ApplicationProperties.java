@@ -18,6 +18,8 @@ import java.util.List;
 @Setter
 @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 public class ApplicationProperties {
+    private String kafkaSystemTopic;
+    private String kafkaSystemQueue;
 
     private final Lep lep = new Lep();
 
