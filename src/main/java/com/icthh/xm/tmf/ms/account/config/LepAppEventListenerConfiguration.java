@@ -17,13 +17,16 @@ public class LepAppEventListenerConfiguration {
 
     @Bean
     XmEntityMsLepProcessingApplicationListener buildLepProcessingApplicationListener(
+        TenantConfigService tenantConfigService,
+        @Qualifier("loadBalancedRestTemplate") RestTemplate restTemplate,
+        CommonsService commonsService,
+        PermissionCheckService permissionCheckService) {
 
-                    TenantConfigService tenantConfigService,
-                    @Qualifier("loadBalancedRestTemplate") RestTemplate restTemplate,
-                    CommonsService commonsService,
-                    PermissionCheckService permissionCheckService) {
-
-        return new XmEntityMsLepProcessingApplicationListener(tenantConfigService, restTemplate, commonsService, permissionCheckService);
+        return new XmEntityMsLepProcessingApplicationListener(
+            tenantConfigService,
+            restTemplate,
+            commonsService,
+            permissionCheckService);
     }
 
 }
