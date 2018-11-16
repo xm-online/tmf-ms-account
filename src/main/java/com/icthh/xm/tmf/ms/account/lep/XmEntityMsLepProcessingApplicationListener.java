@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import static com.icthh.xm.tmf.ms.account.lep.LepXmEntityMsConstants.*;
+import static com.icthh.xm.tmf.ms.account.lep.LepXmAccountMsConstants.*;
 
 /**
  * The {@link XmEntityMsLepProcessingApplicationListener} class.
