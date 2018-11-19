@@ -23,9 +23,4 @@ public class PartyAccountDelegate implements PartyAccountApiDelegate {
         return null;
     }
 
-    public ResponseEntity<List<PartyAccount>> listPartyAccount( String  fields,
-                                                                 Integer  offset,
-                                                                 Integer  limit) {
-        return null;
-    }
 }
