@@ -171,3 +171,516 @@ definitions:
       regex:
         type: string
         description: A regular expression constraint for given value
+  PartyAccount:
+    type: object
+    description: Account used for billing or for settlement purposes concerning a
+      given party (an organization or an individual).
+    required:
+    - name
+    properties:
+      "baseType":
+        type: string
+        description: Generic attribute indicating the base class type of the extension
+          class of the current object. Useful only when the class type of the current  object
+          is unknown to the implementation.
+      "schemaLocation":
+        type: string
+        description: Generic attribute containing the link to the schema that defines
+          the structure of the class type of the current object.
+      "type":
+        type: string
+        description: Generic attribute containing the name of the resource class type
+      creditLimit:
+        "$ref": "#/definitions/Money"
+        description: The maximum amount of money that may be charged on an account
+      description:
+        type: string
+        description: Detailed description of the party account
+      href:
+        type: string
+        description: Unique reference of the account
+      id:
+        type: string
+        description: Unique identifier of the account
+      lastModified:
+        type: string
+        format: date-time
+        description: Date of last modification of the account
+      name:
+        type: string
+        description: Name of the account
+      state:
+        type: string
+        description: 'Contains the lifecycle state such as: Active, Closed, Suspended
+          and so on.'
+      type:
+        type: string
+        description: 'A categorization of an account, such as individual, joint, and
+          so forth, whose instances share some of the same characteristics. Note:
+          for flexibility we use a String here but an implementation may use an enumeration
+          with a limited list of valid values.'
+      paymentStatus:
+        type: string
+        description: The condition of the account, such as due, paid, in arrears.
+      billStructure:
+        "$ref": "#/definitions/BillStructure"
+      paymentPlan:
+        type: array
+        items:
+          "$ref": "#/definitions/PaymentPlan"
+      financialAccount:
+        "$ref": "#/definitions/FinancialAccountRef"
+      defaultPaymentMethod:
+        "$ref": "#/definitions/PaymentMethodRef"
+      relatedParty:
+        type: array
+        items:
+          "$ref": "#/definitions/RelatedPartyRef"
+      taxExemption:
+        type: array
+        items:
+          "$ref": "#/definitions/AccountTaxExemption"
+      contact:
+        type: array
+        items:
+          "$ref": "#/definitions/Contact"
+      accountBalance:
+        type: array
+        items:
+          "$ref": "#/definitions/AccountBalance"
+      accountRelationship:
+        type: array
+        items:
+          "$ref": "#/definitions/AccountRelationship"
+  Money:
+    type: object
+    description: A base / value business entity used to represent money
+    properties:
+      unit:
+        type: string
+        description: Currency (ISO4217 norm uses 3 letters to define the currency)
+      value:
+        type: number
+        format: float
+        description: A positive floating point number
+  BillStructure:
+    type: object
+    description: The structure of the bill for party accounts (billling or settlement).
+    properties:
+      "baseType":
+        type: string
+        description: Generic attribute indicating the base class type of the extension
+          class of the current object. Useful only when the class type of the current  object
+          is unknown to the implementation.
+      "schemaLocation":
+        type: string
+        description: Generic attribute containing the link to the schema that defines
+          the structure of the class type of the current object.
+      "type":
+        type: string
+        description: Generic attribute containing the name of the resource class type
+      presentationMedia:
+        type: array
+        items:
+          "$ref": "#/definitions/BillPresentationMediaRef"
+      format:
+        "$ref": "#/definitions/BillFormatRef"
+      cycleSpecification:
+        "$ref": "#/definitions/BillingCycleSpecificationRef"
+  BillPresentationMediaRef:
+    type: object
+    description: PresentationMedia reference. A mean of communicating a bill, supported
+      by the associated bill format. For example, post mail, email, web page.
+    properties:
+      "referredType":
+        type: string
+        description: Generic attribute indicating the name of the class type of the
+          referred resource entity.
+      href:
+        type: string
+        description: Reference of the bill presentation media
+      id:
+        type: string
+        description: Unique identifier of the bill presentation media
+      name:
+        type: string
+        description: A short descriptive name
+  BillFormatRef:
+    type: object
+    description: BillFormat reference. A bill format is a description of the way in
+      which a bill is presented.
+    properties:
+      "referredType":
+        type: string
+        description: Generic attribute indicating the name of the class type of the
+          referred resource entity.
+      href:
+        type: string
+        description: Reference of the bill format
+      id:
+        type: string
+        description: Unique identifier of the bill format
+      name:
+        type: string
+        description: A short descriptive name
+  BillingCycleSpecificationRef:
+    type: object
+    description: BillingCycleSpecification reference. A description of when to initiate
+      a billing cycle and the various sub steps of a billing cycle.
+    properties:
+      "referredType":
+        type: string
+        description: Generic attribute indicating the name of the class type of the
+          referred resource entity.
+      dateShift:
+        type: integer
+        description: An offset of a billing/settlement date. The offset is expressed
+          as number of days with regard to the start of the billing/settlement period.
+      frequency:
+        type: string
+        description: Frequency of the billing cycle (monthly for instance)
+      href:
+        type: string
+        description: Reference of the billing cycle specification
+      id:
+        type: string
+        description: Unique identifier of the billing cycle specification
+      name:
+        type: string
+        description: A short descriptive name
+  PaymentPlan:
+    type: object
+    description: Defines a plan for payment (when a party wants to spread his payments)
+    properties:
+      "baseType":
+        type: string
+        description: Generic attribute indicating the base class type of the extension
+          class of the current object. Useful only when the class type of the current  object
+          is unknown to the implementation.
+      "schemaLocation":
+        type: string
+        description: Generic attribute containing the link to the schema that defines
+          the structure of the class type of the current object.
+      "type":
+        type: string
+        description: Generic attribute containing the name of the resource class type
+      numberOfPayments:
+        type: integer
+        description: Number of payments used to spread the global payment
+      paymentFrequency:
+        type: string
+        description: Frequency of the payments, such as monthly and bimonthly
+      priority:
+        type: integer
+        description: Priority of the payment plan
+      status:
+        type: string
+        description: Status of the payment plan (effective, ineffective)
+      totalAmount:
+        "$ref": "#/definitions/Money"
+        description: Amount paid
+      type:
+        type: string
+        description: Type of payment plan
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+        description: Validity period of the payment plan
+      paymentMethod:
+        "$ref": "#/definitions/PaymentMethodRef"
+  TimePeriod:
+    type: object
+    description: A base / value business entity used to represent a period of time
+      between two timepoints.
+    properties:
+      endDateTime:
+        type: string
+        format: date-time
+        description: An instant of time, ending at the TimePeriod.
+      startDateTime:
+        type: string
+        format: date-time
+        description: An instant of time, starting at the TimePeriod
+  PaymentMethodRef:
+    type: object
+    description: PaymentMethod reference. A payment method defines a specific mean
+      of payment (e.g direct debit).
+    properties:
+      "referredType":
+        type: string
+        description: Generic attribute indicating the name of the class type of the
+          referred resource entity.
+      href:
+        type: string
+        description: Reference of the payment mean
+      id:
+        type: string
+        description: Unique identifier of the payment mean
+      name:
+        type: string
+        description: Name of the payment mean
+  FinancialAccountRef:
+    type: object
+    description: AccountReceivable reference. An account of money owed by a party
+      to another entity in exchange for goods or services that have been delivered
+      or used. An account receivable aggregates the amounts of one or more party accounts
+      (billing or settlement) owned by a given party.
+    properties:
+      "referredType":
+        type: string
+        description: Generic attribute indicating the name of the class type of the
+          referred resource entity.
+      href:
+        type: string
+        description: Unique reference of the account
+      id:
+        type: string
+        description: Unique identifier of the account
+      name:
+        type: string
+        description: Name of the account
+      accountBalance:
+        "$ref": "#/definitions/AccountBalance"
+  AccountBalance:
+    type: object
+    description: Balances linked to the account
+    required:
+    - type
+    - amount
+    - validFor
+    properties:
+      "baseType":
+        type: string
+        description: Generic attribute indicating the base class type of the extension
+          class of the current object. Useful only when the class type of the current  object
+          is unknown to the implementation.
+      "schemaLocation":
+        type: string
+        description: Generic attribute containing the link to the schema that defines
+          the structure of the class type of the current object.
+      "type":
+        type: string
+        description: Generic attribute containing the name of the resource class type
+      amount:
+        "$ref": "#/definitions/Money"
+        description: Balance amount
+      type:
+        type: string
+        description: 'Type of the balance : deposit balance, disputed balance, loyalty
+          balance, receivable balance...'
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+        description: Balance validity period
+  PaymentMethodRef:
+    type: object
+    description: PaymentMethod reference. A payment method defines a specific mean
+      of payment (e.g direct debit).
+    properties:
+      "referredType":
+        type: string
+        description: Generic attribute indicating the name of the class type of the
+          referred resource entity.
+      href:
+        type: string
+        description: Reference of the payment mean
+      id:
+        type: string
+        description: Unique identifier of the payment mean
+      name:
+        type: string
+        description: Name of the payment mean
+  RelatedPartyRef:
+    type: object
+    description: RelatedParty reference. A related party defines party or party role
+      linked to a specific entity.
+    required:
+    - id
+    - name
+    properties:
+      "referredType":
+        type: string
+        description: Generic attribute indicating the name of the class type of the
+          referred resource entity.
+      href:
+        type: string
+        description: Reference of the related party, could be a party reference or
+          a party role reference
+      id:
+        type: string
+        description: Unique identifier of a related party
+      name:
+        type: string
+        description: Name of the related party
+      role:
+        type: string
+        description: Role of the related party.
+  AccountTaxExemption:
+    type: object
+    description: Proof of freedom from taxes imposed by a taxing jurisdiction
+    required:
+    - issuingJurisdiction
+    - validFor
+    properties:
+      "baseType":
+        type: string
+        description: Generic attribute indicating the base class type of the extension
+          class of the current object. Useful only when the class type of the current  object
+          is unknown to the implementation.
+      "schemaLocation":
+        type: string
+        description: Generic attribute containing the link to the schema that defines
+          the structure of the class type of the current object.
+      "type":
+        type: string
+        description: Generic attribute containing the name of the resource class type
+      certificateNumber:
+        type: string
+        description: Identifier of a document that shows proof of exemption from taxes
+          for the taxing jurisdiction
+      issuingJurisdiction:
+        type: string
+        description: Name of the taxing jurisdiction for which taxes are exempt
+      reason:
+        type: string
+        description: Reason of the tax exemption
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+        description: Period for which the exemption is valid
+  Contact:
+    type: object
+    description: An individual or an organization used as a contact point for a given
+      account and accessed via some contact medium.
+    required:
+    - contactType
+    - validFor
+    properties:
+      "baseType":
+        type: string
+        description: Generic attribute indicating the base class type of the extension
+          class of the current object. Useful only when the class type of the current  object
+          is unknown to the implementation.
+      "schemaLocation":
+        type: string
+        description: Generic attribute containing the link to the schema that defines
+          the structure of the class type of the current object.
+      "type":
+        type: string
+        description: Generic attribute containing the name of the resource class type
+      contactName:
+        type: string
+        description: A displayable name for that contact
+      contactType:
+        type: string
+        description: Type of contact (primary, secondary...)
+      partyRoleType:
+        type: string
+        description: Identifies what kind of party role type is linked to the contact
+          (a account manager...)
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+        description: Validity period of that contact
+      contactMedium:
+        type: array
+        items:
+          "$ref": "#/definitions/ContactMedium"
+      relatedParty:
+        "$ref": "#/definitions/RelatedPartyRef"
+  ContactMedium:
+    type: object
+    description: Indicates the contact medium that could be used to contact the party.
+    properties:
+      "baseType":
+        type: string
+        description: Generic attribute indicating the base class type of the extension
+          class of the current object. Useful only when the class type of the current  object
+          is unknown to the implementation.
+      "schemaLocation":
+        type: string
+        description: Generic attribute containing the link to the schema that defines
+          the structure of the class type of the current object.
+      "type":
+        type: string
+        description: Generic attribute containing the name of the resource class type
+      preferred:
+        type: boolean
+        description: If true, indicates that is the preferred contact medium
+      type:
+        type: string
+        description: 'Type of the contact medium, such as: email address, telephone
+          number, postal address'
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+        description: The time period that the contact medium is valid for
+      characteristic:
+        "$ref": "#/definitions/MediumCharacteristic"
+  MediumCharacteristic:
+    type: object
+    description: Describes the contact medium characteristics that could be used to
+      contact a party (an individual or an organization)
+    properties:
+      city:
+        type: string
+        description: The city
+      country:
+        type: string
+        description: The country
+      emailAddress:
+        type: string
+        description: Full email address in standard format
+      faxNumber:
+        type: string
+        description: The fax number of the contact
+      phoneNumber:
+        type: string
+        description: The primary phone number of the contact
+      postCode:
+        type: string
+        description: Postcode
+      stateOrProvince:
+        type: string
+        description: State or province
+      street1:
+        type: string
+        description: Describes the street
+      street2:
+        type: string
+        description: Complementary street description
+      type:
+        type: string
+        description: Type of medium (fax, mobile phone...)
+  AccountRelationship:
+    type: object
+    description: Significant connection between accounts. For instance an aggregating
+      account for a list of shop branches each having its own billing account.
+    required:
+    - relationshipType
+    - validFor
+    properties:
+      relationshipType:
+        type: string
+        description: Type of relationship
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+        description: Validity period of that relationship
+      account:
+        "$ref": "#/definitions/AccountRef"
+  AccountRef:
+    type: object
+    description: Account reference. A account may be a party account or a financial
+      account.
+    properties:
+      "referredType":
+        type: string
+        description: Generic attribute indicating the name of the class type of the
+          referred resource entity.
+      description:
+        type: string
+        description: Detailed description of the account
+      href:
+        type: string
+        description: Reference of the account
+      id:
+        type: string
+        description: Unique identifier of the account
+      name:
+        type: string
+        description: Name of the account
