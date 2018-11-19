@@ -4,6 +4,7 @@ import com.icthh.xm.commons.lep.spring.web.LepInterceptor;
 import com.icthh.xm.commons.web.spring.TenantInterceptor;
 import com.icthh.xm.commons.web.spring.XmLoggingInterceptor;
 import com.icthh.xm.commons.web.spring.config.XmWebMvcConfigurerAdapter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
@@ -18,12 +19,15 @@ import java.util.List;
 public class WebMvcConfiguration extends XmWebMvcConfigurerAdapter {
 
     private final LepInterceptor lepInterceptor;
+    private final ApplicationProperties appProps;
 
     protected WebMvcConfiguration(LepInterceptor lepInterceptor,
                                   TenantInterceptor tenantInterceptor,
-                                  XmLoggingInterceptor xmLoggingInterceptor) {
+                                  XmLoggingInterceptor xmLoggingInterceptor,
+                                  ApplicationProperties appProps) {
         super(tenantInterceptor, xmLoggingInterceptor);
         this.lepInterceptor = lepInterceptor;
+        this.appProps = appProps;
     }
 
     @Override
@@ -38,6 +42,6 @@ public class WebMvcConfiguration extends XmWebMvcConfigurerAdapter {
 
     @Override
     protected List<String> getTenantIgnorePathPatterns() {
-        return Collections.emptyList();
+        return appProps.getTenantIgnoredPathList();
     }
 }
