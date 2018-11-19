@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,7 +20,7 @@ public class PartyAccountDelegate implements PartyAccountApiDelegate {
     @LogicExtensionPoint("RetrievePartyAccount")
     @PreAuthorize("hasPermission({'id': #id}, 'PARTY.ACCOUNT.GET')")
     @Override
-    public ResponseEntity<List<PartyAccount>> retrievePartyAccount(String id) {
-        return null;
+    public ResponseEntity<List<PartyAccount>> retrievePartyAccount(String id, String profile) {
+        return ResponseEntity.ok(Collections.emptyList());
     }
 }
