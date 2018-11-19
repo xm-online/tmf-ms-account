@@ -33,7 +33,6 @@ spring:
             enabled: false # we use Webpack dev server + BrowserSync for livereload
     jackson:
         serialization.indent_output: true
-        default-property-inclusion: non_null
     cloud:
         consul:
             discovery:
@@ -120,5 +119,10 @@ oauth2:
 # More documentation is available at:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
-
-# application:
+application:
+## ==================================================================
+##   uncomment to read LEPs from flocal file storage
+##   filestorage can be created as link to xm-sm-config-repository forlder using command:
+##   'ln -s <mw-ms-config-repository> ~/xm-online'
+    lep:
+        tenant-script-storage: FILE

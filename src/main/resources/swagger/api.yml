@@ -128,6 +128,11 @@ paths:
         name: id
         in: path
         description: Identifier of the Party Account
+      - type: string
+        required: false
+        in: query
+        name: profile
+        description: Profile
       responses:
         '200':
           description: Ok
