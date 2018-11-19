@@ -22,5 +22,4 @@ public class PartyAccountDelegate implements PartyAccountApiDelegate {
     public ResponseEntity<List<PartyAccount>> retrievePartyAccount(String id) {
         return null;
     }
-
 }
