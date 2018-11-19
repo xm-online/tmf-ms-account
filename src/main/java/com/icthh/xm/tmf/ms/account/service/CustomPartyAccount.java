@@ -1,5 +1,6 @@
 package com.icthh.xm.tmf.ms.account.service;
 
+import com.icthh.xm.tmf.ms.account.model.EntitySpecification;
 import com.icthh.xm.tmf.ms.account.model.PartyAccount;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,5 +12,5 @@ import lombok.Setter;
 @Setter
 public class CustomPartyAccount extends PartyAccount {
 
-    private String customField;
+    private EntitySpecification specification;
 }
