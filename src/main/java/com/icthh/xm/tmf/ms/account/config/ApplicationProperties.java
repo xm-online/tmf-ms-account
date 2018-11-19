@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "application", ignoreUnknownFields = true)
+@ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 public class ApplicationProperties {
     private String kafkaSystemTopic;
     private String kafkaSystemQueue;
