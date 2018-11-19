@@ -1,0 +1,173 @@
+definitions:
+  XmPartyAccount:
+    type: object
+    description: XM extension of the TM PartyAccount
+    allOf:
+        - $ref: '#/definitions/PartyAccount'
+        - type: object
+          properties:
+            specification:
+                $ref: "#/definitions/EntitySpecification"
+                description: XM Party account specification
+  EntitySpecification:
+    type: object
+    description: EntitySpecification is a class that offers characteristics to describe
+      a type of entity. Entities are generic constructs that may be used to describe
+      bespoke business entities that are not effectively covered by the existing SID
+      model.
+    properties:
+      id:
+        type: string
+        description: Unique identifier of this REST resource
+      href:
+        type: string
+        description: Hyperlink reference to this REST resource
+      name:
+        type: string
+        description: Name given to this REST resource
+      description:
+        type: string
+        description: Description of this REST resource
+      "type":
+        type: string
+        description: Class type of this REST resource
+      "schemaLocation":
+        type: string
+        description: This field provides a link to the schema describing this REST
+          resource
+      "baseType":
+        type: string
+        description: The (immediate) base class type of this REST resource
+      version:
+        type: string
+        description: Entity specification version
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+        description: The period for which this REST resource is valid
+      lastUpdate:
+        type: string
+        format: date-time
+        description: Date and time of the last update of this REST resource
+      lifecycleStatus:
+        type: string
+        description: Used to indicate the current lifecycle status of this catalog
+          item
+      attachment:
+        type: array
+        items:
+          "$ref": "#/definitions/Attachment"
+      entitySchema:
+        "$ref": "#/definitions/EntitySchemaRef"
+      specCharacteristic:
+        type: array
+        items:
+          "$ref": "#/definitions/SpecCharacteristic"
+      relatedParty:
+        type: array
+        items:
+          "$ref": "#/definitions/RelatedPartyRef"
+  Attachment:
+    type: object
+    description: Complements the description of an element (for instance a product)
+      through video, pictures...
+    properties:
+      description:
+        type: string
+        description: A narrative text describing the content of the attachment
+      href:
+        type: string
+        description: Reference of the attachment
+      id:
+        type: string
+        description: Unique identifier of the attachment
+      type:
+        type: string
+        description: Attachment type such as video, picture
+      url:
+        type: string
+        description: Uniform Resource Locator, is a web page address (a subset of
+          URI)
+  EntitySchemaRef:
+    type: object
+    description: The reference object to the schema and type of target entity which
+      is described by an entity specification
+    properties:
+      "type":
+        type: string
+        description: Class type of the target entity
+      "schemaLocation":
+        type: string
+        description: This field provides a link to the schema describing the target
+          entity
+  SpecCharacteristic:
+    type: object
+    description: A characteristic quality or distinctive feature of a Specification.  The
+      characteristic can be take on a discrete value, such as color, can take on a
+      range of values, (for example, sensitivity of 100-240 mV), or can be derived
+      from a formula (for example, usage time (hrs) = 30 - talk time *3). Certain
+      characteristics, such as color, may be configured during the ordering or some
+      other process.
+    properties:
+      name:
+        type: string
+        description: Name of the SpecCharacteristic
+      description:
+        type: string
+        description: A narrative that explains in detail what the SpecCharacteristic
+          is
+      valueType:
+        type: string
+        description: A kind of value that the characteristic can take on, such as
+          numeric, text and so forth
+      configurable:
+        type: boolean
+        description: If true, the Boolean indicates that the SpecCharacteristic is
+          configurable
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+        description: The period for which the productSpecCharacteristic is valid
+      "type":
+        type: string
+        description: "(Class) type of the characteristic"
+      "schemaLocation":
+        type: string
+        description: A link to the schema describing this characteristic
+      specCharacteristicValue:
+        type: array
+        items:
+          "$ref": "#/definitions/SpecCharacteristicValue"
+  SpecCharacteristicValue:
+    type: object
+    description: A number or text that can be assigned to a SpecCharacteristic
+    properties:
+      valueType:
+        type: string
+        description: A kind of value that the characteristic value can take on, such
+          as numeric, text and so forth
+      isDefault:
+        type: boolean
+        description: If true, the Boolean Indicates if the value is the default value
+          for a characteristic
+      value:
+        type: object
+        description: the  value that the characteristic can take on.
+      unitOfMeasure:
+        type: string
+        description: unit of measure for the valueCould be minutes, GB, etc
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+        description: The period for which this object is valid
+      valueFrom:
+        type: integer
+        description: The low range value that a characteristic can take on
+      valueTo:
+        type: integer
+        description: The upper range value that a characteristic can take on
+      rangeInterval:
+        type: string
+        description: An indicator that specifies the inclusion or exclusion of the
+          valueFrom and valueTo attributes. If applicable, possible values are "open",
+          "closed", "closedBottom" and "closedTop".
+      regex:
+        type: string
+        description: A regular expression constraint for given value
