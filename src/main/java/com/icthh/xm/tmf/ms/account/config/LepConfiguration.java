@@ -13,7 +13,7 @@ import org.springframework.core.io.ResourceLoader;
  * The {@link LepConfiguration} class.
  */
 @Configuration
-@EnableLepServices(basePackages = "com.icthh.xm.tmf.ms.account.service")
+@EnableLepServices(basePackages = "com.icthh.xm.tmf.ms.account")
 public class LepConfiguration extends WebLepSpringConfiguration {
 
     @Value("${application.lep.tenant-script-storage}")
