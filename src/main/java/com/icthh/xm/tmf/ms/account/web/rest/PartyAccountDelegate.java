@@ -1,5 +1,4 @@
-package com.icthh.xm.tmf.ms.account.service;
-
+package com.icthh.xm.tmf.ms.account.web.rest;
 
 import com.icthh.xm.commons.lep.LogicExtensionPoint;
 import com.icthh.xm.commons.lep.spring.LepService;
@@ -8,12 +7,12 @@ import com.icthh.xm.tmf.ms.account.api.PartyAccountApiDelegate;
 import com.icthh.xm.tmf.ms.account.model.PartyAccount;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
 
-@Service
+@Component
 @LepService(group = "service", name = "default")
 public class PartyAccountDelegate implements PartyAccountApiDelegate {
 
