@@ -17,10 +17,10 @@ import java.util.Map;
 import static com.icthh.xm.tmf.ms.account.lep.LepXmAccountMsConstants.*;
 
 /**
- * The {@link XmEntityMsLepProcessingApplicationListener} class.
+ * The {@link XmMsLepProcessingApplicationListener} class.
  */
 @RequiredArgsConstructor
-public class XmEntityMsLepProcessingApplicationListener extends SpringLepProcessingApplicationListener {
+public class XmMsLepProcessingApplicationListener extends SpringLepProcessingApplicationListener {
 
 
     private final TenantConfigService tenantConfigService;
