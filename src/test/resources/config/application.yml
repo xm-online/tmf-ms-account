@@ -80,5 +80,11 @@ jhipster:
 # More documentation is available at:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
+xm-config:
+    enabled: false
 
-# application:
+application:
+    kafka-system-topic: system_topic
+    kafka-system-queue: system_queue
+    lep:
+        tenant-script-storage: XM_MS_CONFIG
