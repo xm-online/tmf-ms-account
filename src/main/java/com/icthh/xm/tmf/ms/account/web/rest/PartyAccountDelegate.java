@@ -1,5 +1,6 @@
 package com.icthh.xm.tmf.ms.account.web.rest;
 
+import com.codahale.metrics.annotation.Timed;
 import com.icthh.xm.commons.lep.LogicExtensionPoint;
 import com.icthh.xm.commons.lep.spring.LepService;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @LepService(group = "service", name = "default")
 public class PartyAccountDelegate implements PartyAccountApiDelegate {
 
+    @Timed
     @LogicExtensionPoint(value = "RetrievePartyAccount", resolver = ProfileKeyResolver.class)
     @PreAuthorize("hasPermission({'id': #id}, 'PARTY.ACCOUNT.GET')")
     @Override
