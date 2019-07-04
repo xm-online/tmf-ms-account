@@ -27,4 +27,4 @@ if [ -n "${APPLICATION_EXTERNAL_CLASSPATH}" ]; then
 fi
 
 echo "The application will start in ${JHIPSTER_SLEEP}s..." && sleep ${JHIPSTER_SLEEP}
-exec java ${JAVA_OPTS} -Xmx$XMX -Djava.security.egd=file:/dev/./urandom -XX:OnOutOfMemoryError="kill -9 %p" -jar "app.war" "$@"
+exec java ${JAVA_OPTS} -Xmx$XMX -Djava.security.egd=file:/dev/./urandom -XX:+ExitOnOutOfMemoryError -jar "app.war" "$@"
