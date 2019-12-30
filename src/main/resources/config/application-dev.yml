@@ -55,7 +55,7 @@ spring:
             discovery:
                 enabled: true
     kafka:
-        bootstrap-servers: localhost:9093
+        bootstrap-servers: localhost:9092
 
 server:
     port: 8702
@@ -67,8 +67,6 @@ server:
 # ===================================================================
 
 jhipster:
-    http:
-        version: V_1_1 # To use HTTP/2 you will need to activate TLS (see application-tls.yml)
     # CORS is disabled by default on microservices, as you should access them through a gateway.
     # If you want to enable it, please uncomment the configuration below.
     # cors:
@@ -88,12 +86,11 @@ jhipster:
         from: account@localhost
         base-url: http://127.0.0.1:8702
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx:
-            enabled: true
         logs: # Reports Dropwizard metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds
     logging:
+        use-json-format: false # By default, logs are not in Json format
         logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
             enabled: false
             host: localhost
