@@ -97,17 +97,19 @@ if (OperatingSystem.current().isWindows()) {
     }
 }
 
-bootWar {
-    mainClassName = 'com.icthh.xm.tmf.ms.account.AccountApp'
-}
-
-war {
-}
-
 defaultTasks "bootWar"
 
 springBoot {
     mainClassName = "com.icthh.xm.tmf.ms.account.AccountApp"
+}
+
+bootWar {
+    mainClassName = 'com.icthh.xm.tmf.ms.account.AccountApp'
+    manifest {
+        attributes(
+            "Implementation-Version": archiveVersion
+        )
+    }
 }
 
 test {
