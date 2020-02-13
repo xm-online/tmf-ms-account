@@ -1,17 +1,30 @@
-import org.gradle.internal.os.OperatingSystem
-
 apply plugin: 'org.springframework.boot'
 
-dependencies {
-    compile "org.springframework.boot:spring-boot-devtools"
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
 }
 
-def profiles = 'dev'
-if (project.hasProperty('no-liquibase')) {
-    profiles += ',no-liquibase'
+dependencies {
+    developmentOnly "org.springframework.boot:spring-boot-devtools"
 }
-if (project.hasProperty('tls')) {
-    profiles += ',tls'
+
+def profiles = "dev"
+if (project.hasProperty("no-liquibase")) {
+    profiles += ",no-liquibase"
+}
+if (project.hasProperty("tls")) {
+    profiles += ",tls"
+}
+
+springBoot {
+    buildInfo {
+        properties {
+            time = null
+        }
+    }
 }
 
 bootRun {
@@ -20,6 +33,8 @@ bootRun {
 
 
 processResources {
+    inputs.property('version', version)
+    inputs.property('springProfiles', profiles)
     filesMatching('**/application.yml') {
         filter {
             it.replace('#project.version#', version)
@@ -31,4 +46,3 @@ processResources {
         }
     }
 }
-
