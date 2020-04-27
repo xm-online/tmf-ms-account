@@ -9,7 +9,6 @@ buildscript {
     }
     dependencies {
         //jhipster-needle-gradle-buildscript-dependency - JHipster will add additional gradle build script plugins here
-        classpath group: 'commons-configuration', name: 'commons-configuration', version: '1.10'
     }
 }
 
