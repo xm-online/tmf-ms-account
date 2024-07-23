@@ -150,7 +150,7 @@ task cucumberTestReport(type: TestReport) {
 
 pmd {
     rulePriority = 3
-    toolVersion = '5.5.4'
+    toolVersion = '6.55.0'
     ignoreFailures = true
     ruleSetFiles = files("./qa/pmd.xml")
 }
